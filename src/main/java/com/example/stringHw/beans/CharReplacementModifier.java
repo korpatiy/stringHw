@@ -31,20 +31,14 @@ public class CharReplacementModifier implements StringModifier {
 
     /**
      * Заменяет вхождение символов строки в соответствии с алфавитом
+     *
      * @param source исходная строка
      * @return модифицированная строка
      */
     private String replace(String source) {
-        char[] chars = source.toCharArray();
-        StringBuilder stringBuilder = new StringBuilder();
-        for (char c : chars) {
-            String key = String.valueOf(c);
-            if (alphabet.containsKey(key)) {
-                stringBuilder.append(alphabet.get(key));
-                continue;
-            }
-            stringBuilder.append(c);
+        for (String key : alphabet.keySet()) {
+            source = source.replaceAll(key, alphabet.get(key));
         }
-        return stringBuilder.toString();
+        return source;
     }
 }
